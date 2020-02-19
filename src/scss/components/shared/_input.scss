@@ -1,0 +1,47 @@
+.input-container {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+
+    .label {
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        user-select: none;
+    }
+
+    .input-element {
+        outline: none;
+        border: 1px solid #cccccc;
+        background-color: #ffffff;
+        font: inherit;
+        padding: 6px 10px;
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+
+        &.checkbox {
+            display: inline-block;
+            width: auto;
+            margin: 0 15px 0;
+            cursor: pointer;
+        }
+    }
+
+    .input-element:focus {
+        outline: none;
+        background-color: #cccccc;
+    }
+
+    .invalid-input {
+        border: 1px solid red;
+        background-color: #fda49a;
+        margin: 0;
+    }
+}
+
+.error-message {
+    margin: 0 0 10px 10px;
+    color: red;
+}

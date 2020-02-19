@@ -1,5 +1,9 @@
 @import "variables";
 
+body, html, #root{
+    height: 100%;
+}
+
 .container{
 	 margin-right: auto;
 	 margin-left: auto;

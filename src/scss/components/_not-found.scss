@@ -1,0 +1,38 @@
+.not-found {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .fa-times {
+        font-size : 340px;
+        color     : #F44336;
+    }
+
+    h1 {
+        color           : #F44336;
+        border-bottom   : 5px solid #F44336;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        max-width       : 501px;
+        margin: 0 auto;
+
+        span.not-found-code {
+            font-size : 150px;
+        }
+
+        span.error {
+            font-weight : bold;
+        }
+
+        @media (min-width: 768px) {
+            padding-top : 25px;
+        }
+    }
+
+    p {
+        font-size : 20px;
+    }
+}

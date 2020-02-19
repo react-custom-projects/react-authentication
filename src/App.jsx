@@ -1,37 +1,70 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
-
+//toast
+import { ToastContainer } from 'react-toastify';
 //selectors
-import { getTestAction } from './js/store/selectors/AppSelectors';
-//actions
-import { setTestAction } from './js/store/actions/AppActions';
+import { isLoggedIn } from './js/store/app/selectors/AppSelectors';
+//constants
+import { getHomeUrl, getLoginPageUrl } from './js/constants/AppUrls';
+import { history } from './js/constants/helper';
+//components
+import LoginForm from './js/containers/LoginForm';
+import Home from './js/containers/pages/Home';
+import Header from './js/containers/Header';
+import NotFound from './js/components/NotFound';
 
 class App extends Component {
 	render() {
-		const { testAction, setTestAction } = this.props;
+		const { isLoggedIn } = this.props;
+
 		return (
-			<div className="container" style={{ textAlign: 'center' }}>
-				<p>
-					Testing the store <strong>{testAction}</strong>
-				</p>
-				<button className="std-btn primary" onClick={setTestAction}>
-					Change text
-				</button>
-			</div>
+			<Fragment>
+				{isLoggedIn ? (
+					<Fragment>
+						<Header />
+						<Switch>
+							<Route
+								exact
+								path="/"
+								render={() => {
+									return <Redirect to={getHomeUrl()} />;
+								}}
+							/>
+							<Route path={getHomeUrl()} component={Home} />
+							<Route component={NotFound} />
+						</Switch>
+					</Fragment>
+				) : (
+					<Switch>
+						{/* Redirect to login page when we hit base url if the user is not logged in */}
+						<Route
+							exact
+							path="/"
+							render={() => {
+								return (
+									<Redirect
+										to={{
+											pathname: getLoginPageUrl(),
+											state: { referrer: history.location.pathname },
+										}}
+									/>
+								);
+							}}
+						/>
+						<Route path={getLoginPageUrl()} component={LoginForm} />
+						<Route component={NotFound} />
+					</Switch>
+				)}
+				<ToastContainer />
+			</Fragment>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	testAction: getTestAction({ state }),
+	isLoggedIn: isLoggedIn({ state }),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-	setTestAction: () => dispatch(setTestAction()),
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(hot(App));
+export default connect(mapStateToProps)(hot(App));

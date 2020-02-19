@@ -13,6 +13,10 @@ const {
 	metaInfo: { title, description, url, keywords },
 } = require('./constants');
 let fullDevServerUrl = devServer + ':' + port + '/';
+const REACT_TOASTIFY_PATH = path.resolve(
+	__dirname,
+	'./node_modules/react-toastify/dist/ReactToastify.css'
+);
 
 module.exports = (env, options) => {
 	// the mode variable is passed in package.json scripts (development, production)
@@ -74,7 +78,19 @@ module.exports = (env, options) => {
 					},
 				},
 				{
-					test: /\.s?[ac]ss$/,
+					test: /\.(s?[ac]ss|css)$/,
+					include: [REACT_TOASTIFY_PATH],
+					use: [
+						{
+							loader: 'style-loader',
+						},
+						{
+							loader: 'css-loader',
+						},
+					],
+				},
+				{
+					test: /\.(s?[ac]ss|css)$/,
 					exclude: /node_modules/,
 					use: [
 						{

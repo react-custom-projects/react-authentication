@@ -4,21 +4,24 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+
+import { history } from './js/constants/helper';
 
 import { Provider } from 'react-redux';
 
 import configureStore from './js/store/configureStore';
 import App from './App';
 import './scss/styles.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
-const store = configureStore();
+export const store = configureStore();
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router history={history}>
 			<App />
-		</BrowserRouter>
+		</Router>
 	</Provider>,
 	document.getElementById('root')
 );
