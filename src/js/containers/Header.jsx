@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 //toast
 import { toast } from 'react-toastify';
 //actions
-import { setCurrentUser, setIsLoggedInFalse } from '../store/app/actions/AppActions';
+import { setIsLoggedInFalse } from '../store/app/actions/AppActions';
 //constants
 import { getHomeUrl, getLoginPageUrl } from '../constants/AppUrls';
 
@@ -15,7 +15,6 @@ class Header extends Component {
 			history: { push },
 		} = this.props;
 		dispatch(setIsLoggedInFalse());
-		dispatch(setCurrentUser({}));
 		toast.success('Logged out successfully');
 		push(getLoginPageUrl());
 	};

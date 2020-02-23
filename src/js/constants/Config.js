@@ -7,7 +7,7 @@ const APP_CONFIG = {
 
 	// API request URLs
 	API: {
-		base: '//api-support.probiller.local:8882',
+		base: '//localhost:3001/',
 	},
 
 	// CDN

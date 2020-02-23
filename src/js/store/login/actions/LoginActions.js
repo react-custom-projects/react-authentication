@@ -3,7 +3,7 @@ import AuthService from '../../../services/AuthService';
 //helpers
 import { history } from '../../../constants/helper';
 //actions
-import { getCurrentUser, setIsLoggedInTrue } from '../../app/actions/AppActions';
+import { setIsLoggedInTrue } from '../../app/actions/AppActions';
 //constants
 import { getHomeUrl } from '../../../constants/AppUrls';
 //toast
@@ -39,9 +39,7 @@ export const loginUser = ({ username, password }) => async (dispatch) => {
 	try {
 		//login user
 		const loginResponse = await AuthService.userLogin({ username, password });
-		dispatch(setUserCookie(loginResponse.data.access_token));
-		//get current authenticated user
-		dispatch(getCurrentUser());
+		dispatch(setUserCookie(loginResponse.data.token));
 		dispatch(setIsLoggedInTrue());
 		toast.success('Logged in successfully');
 
@@ -54,12 +52,12 @@ export const loginUser = ({ username, password }) => async (dispatch) => {
 			history.push(getHomeUrl());
 		}
 	} catch (e) {
-		if (e.response.data.message) {
-			toast.error(e.response.data.message);
-		} else if (e.response.data.error_description) {
-			toast.error(e.response.data.error_description);
+		if (e.response.status === 401) {
+			toast.error('Email or password is incorrect');
 		} else {
-			toast.error('Something went wrong. Please try again');
+			e.response.data.details.forEach((element) => {
+				toast.error(element.message);
+			});
 		}
 	}
 };

@@ -3,7 +3,6 @@ export const TEST_ACTION = '[App] TEST_ACTION';
 //app wide
 export const SET_IS_LOGGED_IN_TRUE = '[APP] SET_IS_LOGGED_IN_TRUE';
 export const SET_IS_LOGGED_IN_FALSE = '[APP] SET_IS_LOGGED_IN_FALSE';
-export const SET_CURRENT_USER = '[APP] SET_CURRENT_USER';
 
 //auth
 export const RESET_LOGIN_FORM = '[login] RESET_LOGIN_FORM';
