@@ -12,12 +12,12 @@ import { toast } from 'react-toastify';
 import {
 	RESET_LOGIN_FORM,
 	SET_LOGIN_FORM_PASSWORD_PROPERTIES,
-	SET_LOGIN_FORM_USERNAME_PROPERTIES,
+	SET_LOGIN_FORM_EMAIL_PROPERTIES,
 	SET_USER_COOKIE,
 } from '../../actionTypes';
 
-export const setLoginFormUserNameProperties = (value) => ({
-	type: SET_LOGIN_FORM_USERNAME_PROPERTIES,
+export const setLoginFormEmailProperties = (value) => ({
+	type: SET_LOGIN_FORM_EMAIL_PROPERTIES,
 	value: value,
 });
 
@@ -35,10 +35,10 @@ export const setUserCookie = (value) => ({
 	value: value,
 });
 
-export const loginUser = ({ username, password }) => async (dispatch) => {
+export const loginUser = ({ email, password }) => async (dispatch) => {
 	try {
 		//login user
-		const loginResponse = await AuthService.userLogin({ username, password });
+		const loginResponse = await AuthService.userLogin({ email, password });
 		dispatch(setUserCookie(loginResponse.data.token));
 		dispatch(setIsLoggedInTrue());
 		toast.success('Logged in successfully');

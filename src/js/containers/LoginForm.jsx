@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 //actions
 import {
 	resetLoginForm,
-	setLoginFormUserNameProperties,
+	setLoginFormEmailProperties,
 	setLoginFormPasswordProperties,
 	loginUser,
 } from '../store/login/actions/LoginActions';
 //selectors
 import {
 	isLoginFormValid,
-	loginFormUserName,
+	loginFormEmail,
 	loginFormPassword,
 } from '../store/login/selectors/LoginSelectors';
 //components
@@ -18,14 +18,14 @@ import Input from '../components/shared/Input';
 
 class LoginForm extends Component {
 	inputsConfigurations = {
-		userNameConf: {
-			label: 'Username',
+		emailConf: {
+			label: 'Email',
 			elementType: 'input',
 			elementConfig: {
 				type: 'text',
-				placeholder: 'Enter your username',
-				name: 'username',
-				id: 'loginUserName',
+				placeholder: 'Enter your email',
+				name: 'email',
+				id: 'loginEmail',
 			},
 		},
 		passwordConf: {
@@ -47,9 +47,9 @@ class LoginForm extends Component {
 		dispatch(resetLoginForm());
 	}
 
-	userNameHandler = ({ target: { value } }) => {
+	emailHandler = ({ target: { value } }) => {
 		const { dispatch } = this.props;
-		dispatch(setLoginFormUserNameProperties(value));
+		dispatch(setLoginFormEmailProperties(value));
 	};
 
 	passwordHandler = ({ target: { value } }) => {
@@ -60,12 +60,12 @@ class LoginForm extends Component {
 	// on form submission
 	onSubmitHandler = (event) => {
 		event.preventDefault();
-		const { dispatch, username, password } = this.props;
-		dispatch(loginUser({ username: username.value, password: password.value }));
+		const { dispatch, email, password } = this.props;
+		dispatch(loginUser({ email: email.value, password: password.value }));
 	};
 	render() {
-		const { userNameConf, passwordConf } = this.inputsConfigurations,
-			{ username, password, isFormValid } = this.props;
+		const { emailConf, passwordConf } = this.inputsConfigurations,
+			{ email, password, isFormValid } = this.props;
 
 		return (
 			<div className="container">
@@ -73,17 +73,18 @@ class LoginForm extends Component {
 					<div className="row">
 						<div className="col-xs-12">
 							<Input
-								elementType={userNameConf.elementType}
-								elementConfig={userNameConf.elementConfig}
-								value={username.value}
-								changed={this.userNameHandler}
-								invalid={!username.valid}
-								touched={username.touched}
-								label={userNameConf.label}
+								elementType={emailConf.elementType}
+								elementConfig={emailConf.elementConfig}
+								value={email.value}
+								changed={this.emailHandler}
+								invalid={!email.valid}
+								touched={email.touched}
+								label={emailConf.label}
 							/>
-							{username.displayErrors.isRequiredError && (
+							{email.displayErrors.isRequiredError && (
 								<p className="error-message">Required Field.</p>
 							)}
+							{email.displayErrors.isEmailError && <p className="error-message">Invalid Email</p>}
 						</div>
 						<div className="col-xs-12">
 							<Input
@@ -118,7 +119,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	username: loginFormUserName({ state }),
+	email: loginFormEmail({ state }),
 	password: loginFormPassword({ state }),
 	isFormValid: isLoginFormValid({ state }),
 });
