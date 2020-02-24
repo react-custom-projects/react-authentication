@@ -84,7 +84,7 @@ export const loginUser = () => async (dispatch, getState) => {
 		}
 	} catch (e) {
 		if (e.response.status === 401) {
-			toast.error('Email or password is incorrect');
+			toast.error('Incorrect Email or Password');
 		} else {
 			e.response.data.details.forEach((element) => {
 				toast.error(element.message);
