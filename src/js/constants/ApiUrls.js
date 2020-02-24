@@ -1,4 +1,4 @@
-import { APP_CONFIG } from './Config';
+import { APP_CONFIG } from '../services/Config';
 
 export const BASE_URL = APP_CONFIG.API.base;
 
