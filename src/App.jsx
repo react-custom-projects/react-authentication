@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 //selectors
 import { isLoggedIn } from './js/store/app/selectors/AppSelectors';
 //constants
-import { getHomeUrl, getLoginPageUrl } from './js/constants/AppUrls';
+import { getHomeUrl, getLoginPageUrl, getSignUpPageUrl } from './js/constants/AppUrls';
 import { history } from './js/constants/helper';
 //components
 import Header from './js/containers/Header';
@@ -15,6 +15,7 @@ import Header from './js/containers/Header';
 import LoginPage from './js/containers/pages/LoginPage';
 import NotFound from './js/components/NotFound';
 import Home from './js/containers/pages/Home';
+import SignupPage from './js/containers/pages/SignUpPage';
 
 class App extends Component {
 	render() {
@@ -22,9 +23,9 @@ class App extends Component {
 
 		return (
 			<Fragment>
-				<Header />
 				{isLoggedIn ? (
 					<Fragment>
+						<Header />
 						<Switch>
 							<Route
 								exact
@@ -55,6 +56,7 @@ class App extends Component {
 							}}
 						/>
 						<Route path={getLoginPageUrl()} component={LoginPage} />
+						<Route path={getSignUpPageUrl()} component={SignupPage} />
 						<Route component={NotFound} />
 					</Switch>
 				)}

@@ -63,7 +63,7 @@ class AuthForm extends Component {
 	};
 	render() {
 		const { emailConf, passwordConf } = this.inputsConfigurations,
-			{ email, password, isFormValid } = this.props;
+			{ email, password, isFormValid, btnLabel } = this.props;
 
 		return (
 			<div className="container">
@@ -106,7 +106,7 @@ class AuthForm extends Component {
 								disabled={!isFormValid}
 								onClick={this.onSubmitHandler}
 							>
-								login
+								{btnLabel}
 							</button>
 						</div>
 					</div>

@@ -37,6 +37,30 @@ export const setUserCookie = (value) => ({
 	value: value,
 });
 
+export const signUpUser = () => async (dispatch, getState) => {
+	try {
+		const state = getState(),
+			email = AuthFormEmail({ state }).value,
+			password = authFormPassword({ state }).value;
+
+		//sign up user
+		const signUpResponse = await AuthService.userSignUp({ email, password });
+
+		dispatch(setUserCookie(signUpResponse.data.token));
+		dispatch(setIsLoggedInTrue());
+		history.push(getHomeUrl());
+		toast.success('Created new account successfully');
+	} catch (e) {
+		if (e.response.data.error) {
+			toast.error(e.response.data.error);
+		} else {
+			e.response.data.details.forEach((element) => {
+				toast.error(element.message);
+			});
+		}
+	}
+};
+
 export const loginUser = () => async (dispatch, getState) => {
 	try {
 		const state = getState(),

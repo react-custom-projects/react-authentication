@@ -7,8 +7,6 @@ import { toast } from 'react-toastify';
 import { setIsLoggedInFalse } from '../store/app/actions/AppActions';
 //constants
 import { getLoginPageUrl } from '../constants/AppUrls';
-//selectors
-import { isLoggedIn } from '../store/app/selectors/AppSelectors';
 
 class Header extends Component {
 	logoutHandler = () => {
@@ -22,7 +20,6 @@ class Header extends Component {
 	};
 
 	render() {
-		const { isLoggedIn } = this.props;
 		return (
 			<nav className="navbar navbar-default">
 				<div className="container">
@@ -42,8 +39,4 @@ class Header extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	isLoggedIn: isLoggedIn({ state }),
-});
-
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect()(withRouter(Header));
