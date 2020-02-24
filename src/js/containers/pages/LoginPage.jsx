@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //actions
-import { loginUser } from '../../store/login/actions/LoginActions';
+import { loginUser } from '../../store/auth/actions/AuthActions';
 //components
-import LoginForm from '../LoginForm';
+import AuthForm from '../AuthForm';
 
 class LoginPage extends Component {
 	onSubmitHandler = (event) => {
@@ -16,7 +16,7 @@ class LoginPage extends Component {
 		return (
 			<div>
 				<h3 className="text-center">Login</h3>
-				<LoginForm onSubmit={this.onSubmitHandler} />
+				<AuthForm onSubmit={this.onSubmitHandler} />
 			</div>
 		);
 	}

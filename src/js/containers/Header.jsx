@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 //actions
 import { setIsLoggedInFalse } from '../store/app/actions/AppActions';
 //constants
-import { getHomeUrl, getLoginPageUrl } from '../constants/AppUrls';
+import { getLoginPageUrl } from '../constants/AppUrls';
 //selectors
 import { isLoggedIn } from '../store/app/selectors/AppSelectors';
 

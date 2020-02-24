@@ -36,7 +36,7 @@ const responseInterceptorError = (error) => {
 		if (
 			errorResponse.data.error_description === 'User account is disabled.' || // user account
 			errorResponse.data.error_description === 'User account is locked.' || // admin account
-			errorResponse.data.error_description === 'OAuth2 authentication required' || // admin account
+			errorResponse.data.error_description === 'OAuth2 auth required' || // admin account
 			errorResponse.data.code === 15001
 		) {
 			history.push(getLoginPageUrl(), { referrer: history.location.pathname });

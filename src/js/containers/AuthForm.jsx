@@ -2,21 +2,20 @@ import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 //actions
 import {
-	resetLoginForm,
-	setLoginFormEmailProperties,
-	setLoginFormPasswordProperties,
-	loginUser,
-} from '../store/login/actions/LoginActions';
+	resetAuthForm,
+	setAuthFormEmailProperties,
+	setAuthFormPasswordProperties,
+} from '../store/auth/actions/AuthActions';
 //selectors
 import {
-	isLoginFormValid,
-	loginFormEmail,
-	loginFormPassword,
-} from '../store/login/selectors/LoginSelectors';
+	isAuthFormValid,
+	AuthFormEmail,
+	authFormPassword,
+} from '../store/auth/selectors/AuthSelectors';
 //components
 import Input from '../components/shared/Input';
 
-class LoginForm extends Component {
+class AuthForm extends Component {
 	inputsConfigurations = {
 		emailConf: {
 			label: 'Email',
@@ -25,7 +24,7 @@ class LoginForm extends Component {
 				type: 'text',
 				placeholder: 'Enter your email',
 				name: 'email',
-				id: 'loginEmail',
+				id: 'authEmail',
 			},
 		},
 		passwordConf: {
@@ -35,7 +34,7 @@ class LoginForm extends Component {
 				type: 'password',
 				placeholder: 'Enter your password',
 				name: 'password',
-				id: 'loginPassword',
+				id: 'authPassword',
 			},
 		},
 	};
@@ -44,17 +43,17 @@ class LoginForm extends Component {
 
 	componentWillUnmount() {
 		const { dispatch } = this.props;
-		dispatch(resetLoginForm());
+		dispatch(resetAuthForm());
 	}
 
 	emailHandler = ({ target: { value } }) => {
 		const { dispatch } = this.props;
-		dispatch(setLoginFormEmailProperties(value));
+		dispatch(setAuthFormEmailProperties(value));
 	};
 
 	passwordHandler = ({ target: { value } }) => {
 		const { dispatch } = this.props;
-		dispatch(setLoginFormPasswordProperties(value));
+		dispatch(setAuthFormPasswordProperties(value));
 	};
 
 	// on form submission
@@ -118,9 +117,9 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	email: loginFormEmail({ state }),
-	password: loginFormPassword({ state }),
-	isFormValid: isLoginFormValid({ state }),
+	email: AuthFormEmail({ state }),
+	password: authFormPassword({ state }),
+	isFormValid: isAuthFormValid({ state }),
 });
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(AuthForm);
