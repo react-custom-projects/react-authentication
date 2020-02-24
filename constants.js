@@ -6,9 +6,9 @@ module.exports = {
 	jsSubDirectory: 'js/',
 	cssSubDirectory: 'css/',
 	metaInfo: {
-		title: 'Adam Morsi',
-		description: 'description',
+		title: 'React Auth',
+		description: 'React application to demonstrate authentication functionality',
 		url: 'https://example.com/',
-		keywords: 'add you keywords',
+		keywords: 'auth, authentication',
 	},
 };
