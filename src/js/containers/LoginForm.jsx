@@ -59,9 +59,8 @@ class LoginForm extends Component {
 
 	// on form submission
 	onSubmitHandler = (event) => {
-		event.preventDefault();
-		const { dispatch, email, password } = this.props;
-		dispatch(loginUser({ email: email.value, password: password.value }));
+		const { onSubmit } = this.props;
+		onSubmit(event);
 	};
 	render() {
 		const { emailConf, passwordConf } = this.inputsConfigurations,

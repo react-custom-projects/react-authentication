@@ -10,10 +10,11 @@ import { isLoggedIn } from './js/store/app/selectors/AppSelectors';
 import { getHomeUrl, getLoginPageUrl } from './js/constants/AppUrls';
 import { history } from './js/constants/helper';
 //components
-import LoginForm from './js/containers/LoginForm';
-import Home from './js/containers/pages/Home';
 import Header from './js/containers/Header';
+//pages
+import LoginPage from './js/containers/pages/LoginPage';
 import NotFound from './js/components/NotFound';
+import Home from './js/containers/pages/Home';
 
 class App extends Component {
 	render() {
@@ -21,9 +22,9 @@ class App extends Component {
 
 		return (
 			<Fragment>
+				<Header />
 				{isLoggedIn ? (
 					<Fragment>
-						<Header />
 						<Switch>
 							<Route
 								exact
@@ -53,7 +54,7 @@ class App extends Component {
 								);
 							}}
 						/>
-						<Route path={getLoginPageUrl()} component={LoginForm} />
+						<Route path={getLoginPageUrl()} component={LoginPage} />
 						<Route component={NotFound} />
 					</Switch>
 				)}

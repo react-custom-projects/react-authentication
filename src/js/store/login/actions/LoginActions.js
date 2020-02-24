@@ -15,6 +15,8 @@ import {
 	SET_LOGIN_FORM_EMAIL_PROPERTIES,
 	SET_USER_COOKIE,
 } from '../../actionTypes';
+//selectors
+import { loginFormEmail, loginFormPassword } from '../selectors/LoginSelectors';
 
 export const setLoginFormEmailProperties = (value) => ({
 	type: SET_LOGIN_FORM_EMAIL_PROPERTIES,
@@ -35,10 +37,15 @@ export const setUserCookie = (value) => ({
 	value: value,
 });
 
-export const loginUser = ({ email, password }) => async (dispatch) => {
+export const loginUser = () => async (dispatch, getState) => {
 	try {
+		const state = getState(),
+			email = loginFormEmail({ state }).value,
+			password = loginFormPassword({ state }).value;
+
 		//login user
 		const loginResponse = await AuthService.userLogin({ email, password });
+
 		dispatch(setUserCookie(loginResponse.data.token));
 		dispatch(setIsLoggedInTrue());
 		toast.success('Logged in successfully');
