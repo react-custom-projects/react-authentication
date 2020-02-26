@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 //actions
 import { loginUser } from '../../store/auth/actions/AuthActions';
 //components
 import AuthForm from '../AuthForm';
+import ThirdParty from '../../components/ThirdParty';
 
 class LoginPage extends Component {
-	onSubmitHandler = (event) => {
-		event.preventDefault();
+	onSubmitHandler = () => {
 		const { dispatch } = this.props;
 		dispatch(loginUser());
 	};
@@ -16,7 +15,14 @@ class LoginPage extends Component {
 	render() {
 		return (
 			<div className="container">
-				<AuthForm onSubmit={this.onSubmitHandler} btnLabel="Sign In" />
+				<div className="row">
+					<div className="col-md-6">
+						<AuthForm onSubmit={this.onSubmitHandler} btnLabel="Sign In" />
+					</div>
+					<div className="col-md-6">
+						<ThirdParty label="Sign In" />
+					</div>
+				</div>
 			</div>
 		);
 	}
