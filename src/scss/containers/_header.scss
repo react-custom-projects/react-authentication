@@ -26,17 +26,8 @@
         &:focus,
         &:hover {
             color            : rgba(255,255,255,.75);
+            cursor: pointer;
         }
-    }
-}
-
-a {
-    color       : rgba(255,255,255,.5);
-
-    &:focus,
-    &:hover {
-        color            : rgba(255,255,255,.75);
-        cursor: pointer;
     }
 }
 

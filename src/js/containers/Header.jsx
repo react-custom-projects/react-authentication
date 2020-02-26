@@ -48,7 +48,7 @@ class Header extends Component {
 							</Fragment>
 						) : (
 							<li onClick={this.logoutHandler}>
-								<a>Sign Out</a>
+								<a className="navbar-brand">Sign Out</a>
 							</li>
 						)}
 					</ul>
