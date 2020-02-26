@@ -5,7 +5,7 @@ import { history } from '../../../constants/helper';
 //actions
 import { setIsLoggedInTrue } from '../../app/actions/AppActions';
 //constants
-import { getHomeUrl } from '../../../constants/AppUrls';
+import { getDashboardUrl } from '../../../constants/AppUrls';
 //toast
 import { toast } from 'react-toastify';
 //action types
@@ -48,7 +48,7 @@ export const signUpUser = () => async (dispatch, getState) => {
 
 		dispatch(setUserCookie(signUpResponse.data.token));
 		dispatch(setIsLoggedInTrue());
-		history.push(getHomeUrl());
+		history.push(getDashboardUrl());
 		toast.success('Created new account successfully');
 	} catch (e) {
 		if (e.response.data.error) {
@@ -80,7 +80,7 @@ export const loginUser = () => async (dispatch, getState) => {
 			let referrer = history.location.state.referrer;
 			history.push(referrer);
 		} else {
-			history.push(getHomeUrl());
+			history.push(getDashboardUrl());
 		}
 	} catch (e) {
 		if (e.response.status === 401) {

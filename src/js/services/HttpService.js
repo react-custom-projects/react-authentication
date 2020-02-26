@@ -6,7 +6,7 @@ import { setIsLoggedInFalse } from '../store/app/actions/AppActions';
 //constants
 import { BASE_URL } from '../constants/ApiUrls';
 import { getCookie, history } from '../constants/helper';
-import { getLoginPageUrl } from '../constants/AppUrls';
+import { getSignInPageUrl } from '../constants/AppUrls';
 
 const apiService = axios.create({
 	baseURL: BASE_URL,
@@ -39,7 +39,7 @@ const responseInterceptorError = (error) => {
 			errorResponse.data.error_description === 'OAuth2 auth required' || // admin account
 			errorResponse.data.code === 15001
 		) {
-			history.push(getLoginPageUrl(), { referrer: history.location.pathname });
+			history.push(getSignInPageUrl(), { referrer: history.location.pathname });
 			store.dispatch(setIsLoggedInFalse());
 		}
 	}

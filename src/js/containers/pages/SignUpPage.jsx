@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { signUpUser } from '../../store/auth/actions/AuthActions';
 //components
 import AuthForm from '../AuthForm';
-//constants
-import { getLoginPageUrl } from '../../constants/AppUrls';
 
 class SignUpPage extends Component {
 	onSubmitHandler = (event) => {
@@ -18,11 +16,7 @@ class SignUpPage extends Component {
 	render() {
 		return (
 			<div className="container">
-				<h3 className="text-center">Create new account</h3>
 				<AuthForm onSubmit={this.onSubmitHandler} btnLabel="Sign Up" />
-				<p className="text-right">
-					<Link to={getLoginPageUrl()}>Login</Link>
-				</p>
 			</div>
 		);
 	}

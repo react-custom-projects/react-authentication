@@ -1,44 +1,42 @@
 .navbar-default {
-    background-color : #f8f8f8;
+    background-color : #343a40;
     border-color     : #e7e7e7;
     box-sizing: border-box;
 
     .navbar-brand {
-        color       : #777;
+        color       : rgba(255,255,255,.5);
         float       : left;
         height      : 50px;
         padding     : 15px 15px;
         font-size   : 18px;
         line-height : 20px;
-    }
-
-    a {
         text-decoration  : none;
         background-color : transparent;
-    }
 
-    .navbar-nav > .active > a,
-    .navbar-nav > .active > a:focus,
-    .navbar-nav > .active > a:hover {
-        color            : #555;
-        background-color : #e7e7e7;
-    }
+        &.active {
+            color            : #fff;
+            background-color : transparent;
 
-    .navbar-nav > li > a:focus,
-    .navbar-nav > li > a:hover {
-        color            : #333;
-        background-color : transparent;
+            &:focus,
+            &:hover {
+                color            : #fff;
+            }
+        }
+
+        &:focus,
+        &:hover {
+            color            : rgba(255,255,255,.75);
+        }
+    }
+}
+
+a {
+    color       : rgba(255,255,255,.5);
+
+    &:focus,
+    &:hover {
+        color            : rgba(255,255,255,.75);
         cursor: pointer;
-    }
-
-    .navbar-nav > li > a {
-        color : #777;
-    }
-
-    .navbar-nav > li > a {
-        padding-top    : 14px;
-        padding-bottom : 14px;
-        line-height    : 20px;
     }
 }
 

@@ -1,15 +1,15 @@
-const PAGE_LOGIN = '/login';
-const PAGE_SIGNUP = '/signup';
-const HOME = '/home';
+const PAGE_SIGN_IN = '/signin';
+const PAGE_SIGN_UP = '/signup';
+const DASHBOARD = '/dashboard';
 
-export const getLoginPageUrl = () => {
-	return PAGE_LOGIN;
+export const getSignInPageUrl = () => {
+	return PAGE_SIGN_IN;
 };
 
 export const getSignUpPageUrl = () => {
-	return PAGE_SIGNUP;
+	return PAGE_SIGN_UP;
 };
 
-export const getHomeUrl = () => {
-	return HOME;
+export const getDashboardUrl = () => {
+	return DASHBOARD;
 };
