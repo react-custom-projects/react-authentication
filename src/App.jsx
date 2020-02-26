@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
@@ -10,12 +10,13 @@ import { isLoggedIn } from './js/store/app/selectors/AppSelectors';
 import { getDashboardUrl, getSignInPageUrl, getSignUpPageUrl } from './js/constants/AppUrls';
 import { history } from './js/constants/helper';
 //components
-import Header from './js/containers/Header';
+const AsyncHeader = lazy(() => import('./js/containers/Header'));
 //pages
 import LoginPage from './js/containers/pages/LoginPage';
 import NotFound from './js/components/NotFound';
 import Home from './js/containers/pages/Home';
 import SignupPage from './js/containers/pages/SignUpPage';
+import LoadingIcon from './js/components/LoadingIcon';
 
 class App extends Component {
 	render() {
@@ -23,44 +24,46 @@ class App extends Component {
 
 		return (
 			<Fragment>
-				<Header />
-				{isLoggedIn ? (
-					<Fragment>
+				<Suspense fallback={<LoadingIcon />}>
+					<AsyncHeader />
+					{isLoggedIn ? (
+						<Fragment>
+							<Switch>
+								<Route
+									exact
+									path="/"
+									render={() => {
+										return <Redirect to={getDashboardUrl()} />;
+									}}
+								/>
+								<Route path={getDashboardUrl()} component={Home} />
+								<Route component={NotFound} />
+							</Switch>
+						</Fragment>
+					) : (
 						<Switch>
+							{/* Redirect to login page when we hit base url if the user is not logged in */}
 							<Route
 								exact
 								path="/"
 								render={() => {
-									return <Redirect to={getDashboardUrl()} />;
+									return (
+										<Redirect
+											to={{
+												pathname: getSignInPageUrl(),
+												state: { referrer: history.location.pathname },
+											}}
+										/>
+									);
 								}}
 							/>
-							<Route path={getDashboardUrl()} component={Home} />
+							<Route path={getSignInPageUrl()} component={LoginPage} />
+							<Route path={getSignUpPageUrl()} component={SignupPage} />
 							<Route component={NotFound} />
 						</Switch>
-					</Fragment>
-				) : (
-					<Switch>
-						{/* Redirect to login page when we hit base url if the user is not logged in */}
-						<Route
-							exact
-							path="/"
-							render={() => {
-								return (
-									<Redirect
-										to={{
-											pathname: getSignInPageUrl(),
-											state: { referrer: history.location.pathname },
-										}}
-									/>
-								);
-							}}
-						/>
-						<Route path={getSignInPageUrl()} component={LoginPage} />
-						<Route path={getSignUpPageUrl()} component={SignupPage} />
-						<Route component={NotFound} />
-					</Switch>
-				)}
-				<ToastContainer />
+					)}
+					<ToastContainer />
+				</Suspense>
 			</Fragment>
 		);
 	}
