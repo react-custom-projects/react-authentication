@@ -17,6 +17,15 @@ const APP_CONFIG = {
 		logos: 'http://cdn-d-assets.probiller.com/stage_logos',
 	},
 
+	OAUTH_APP_ID: {
+		facebook: {
+			appId: '1514993825330185',
+		},
+		google: {
+			appId: '109793887357-q18s32dgokpe6vf3alfs4i70n5bfhpgt.apps.googleusercontent.com',
+		},
+	},
+
 	// Google Analytics
 	ANALYTICS: {
 		UA: 'UA-73427892-1',

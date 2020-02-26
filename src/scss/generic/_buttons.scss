@@ -40,14 +40,18 @@
     }
 
     &.danger {
-        color            : #fff;
-        background-color : #d9534f;
-        border-color     : #d43f3a;
+        color            : #fff !important;
+        background-color : #d9534f !important;
+        border-color     : #d43f3a !important;
+
+        div {
+
+        }
 
         &:hover, &:active {
-            color            : #fff;
-            background-color : #c9302c;
-            border-color     : #ac2925;
+            color            : #fff !important;
+            background-color : #c9302c !important;
+            border-color     : #ac2925 !important;
         }
     }
 

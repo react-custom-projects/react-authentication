@@ -12,6 +12,14 @@ class SignUpPage extends Component {
 		dispatch(signUpUser());
 	};
 
+	responseFacebook = (res) => {
+		console.log(res);
+	};
+
+	responseGoogle = (res) => {
+		console.log(res);
+	};
+
 	render() {
 		return (
 			<div className="container">
@@ -20,7 +28,11 @@ class SignUpPage extends Component {
 						<AuthForm onSubmit={this.onSubmitHandler} btnLabel="Sign Up" />
 					</div>
 					<div className="col-md-6">
-						<ThirdParty label="Sign Up" />
+						<ThirdParty
+							label="Sign Up"
+							responseFacebook={this.responseFacebook}
+							responseGoogle={this.responseGoogle}
+						/>
 					</div>
 				</div>
 			</div>
