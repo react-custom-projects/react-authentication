@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //actions
-import { signUpUser } from '../../store/auth/actions/AuthActions';
+import {
+	signUpUser,
+	signUpFacebookUser,
+	signUpGoogleUser,
+} from '../../store/auth/actions/AuthActions';
 //components
 import AuthForm from '../AuthForm';
 import ThirdParty from '../../components/ThirdParty';
@@ -13,11 +17,13 @@ class SignUpPage extends Component {
 	};
 
 	responseFacebook = (res) => {
-		console.log(res);
+		const { dispatch } = this.props;
+		dispatch(signUpFacebookUser(res.accessToken));
 	};
 
 	responseGoogle = (res) => {
-		console.log(res);
+		const { dispatch } = this.props;
+		dispatch(signUpGoogleUser(res.accessToken));
 	};
 
 	render() {

@@ -1,5 +1,10 @@
 import { apiService } from './HttpService';
-import { getLoginUrl, getSignUpUrl } from '../constants/ApiUrls';
+import {
+	getLoginUrl,
+	getSignUpUrl,
+	getGoogleSignUpUrl,
+	getFacebookSignUpUrl,
+} from '../constants/ApiUrls';
 
 class AuthService {
 	static userSignUp({ email, password }) {
@@ -14,6 +19,20 @@ class AuthService {
 			method: 'POST',
 			url: getLoginUrl(),
 			data: { email, password },
+		});
+	}
+	static userGoogleSignup(access_token) {
+		return apiService({
+			method: 'POST',
+			url: getGoogleSignUpUrl(),
+			data: { access_token },
+		});
+	}
+	static userFacebookSignup(access_token) {
+		return apiService({
+			method: 'POST',
+			url: getFacebookSignUpUrl(),
+			data: { access_token },
 		});
 	}
 }

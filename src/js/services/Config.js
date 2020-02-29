@@ -2,7 +2,7 @@
 const APP_CONFIG = {
 	// Base APP URL
 	URL: {
-		base: 'http://support.probiller.local:8002',
+		base: '//localhost:3000/',
 	},
 
 	// API request URLs

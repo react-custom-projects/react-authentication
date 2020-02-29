@@ -92,3 +92,29 @@ export const loginUser = () => async (dispatch, getState) => {
 		}
 	}
 };
+
+export const signUpGoogleUser = (access_token) => async (dispatch) => {
+	try {
+		//sign up user
+		const signUpResponse = await AuthService.userGoogleSignup(access_token);
+		dispatch(setUserCookie(signUpResponse.data.token));
+		dispatch(setIsLoggedInTrue());
+		history.push(getDashboardUrl());
+		toast.success('Signed up successfully using Google');
+	} catch (err) {
+		console.log(err.response);
+	}
+};
+
+export const signUpFacebookUser = (access_token) => async (dispatch) => {
+	try {
+		//sign up user
+		const signUpResponse = await AuthService.userFacebookSignup(access_token);
+		dispatch(setUserCookie(signUpResponse.data.token));
+		dispatch(setIsLoggedInTrue());
+		history.push(getDashboardUrl());
+		toast.success('Signed up successfully using Facebook');
+	} catch (err) {
+		console.log(err.response);
+	}
+};
