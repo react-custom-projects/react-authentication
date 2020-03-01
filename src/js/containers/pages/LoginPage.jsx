@@ -20,7 +20,11 @@ class LoginPage extends Component {
 						<AuthForm onSubmit={this.onSubmitHandler} btnLabel="Sign In" />
 					</div>
 					<div className="col-md-6">
-						<ThirdParty label="Sign In" />
+						<ThirdParty
+							title="Sign In"
+							facebookBtnLabel="Facebook Sign In"
+							googleBtnLabel="Google Sign In"
+						/>
 					</div>
 				</div>
 			</div>

@@ -35,7 +35,9 @@ class SignUpPage extends Component {
 					</div>
 					<div className="col-md-6">
 						<ThirdParty
-							label="Sign Up"
+							title="Sign Up"
+							facebookBtnLabel="Facebook Sign Up"
+							googleBtnLabel="Google Sign Up"
 							responseFacebook={this.responseFacebook}
 							responseGoogle={this.responseGoogle}
 						/>
