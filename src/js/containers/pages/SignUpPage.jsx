@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //actions
-import {
-	signUpUser,
-	signUpFacebookUser,
-	signUpGoogleUser,
-} from '../../store/auth/actions/AuthActions';
+import { signUpUser } from '../../store/auth/actions/AuthActions';
 //components
 import AuthForm from '../AuthForm';
 import ThirdParty from '../../components/ThirdParty';
@@ -14,16 +10,6 @@ class SignUpPage extends Component {
 	onSubmitHandler = () => {
 		const { dispatch } = this.props;
 		dispatch(signUpUser());
-	};
-
-	responseFacebook = (res) => {
-		const { dispatch } = this.props;
-		dispatch(signUpFacebookUser(res.accessToken));
-	};
-
-	responseGoogle = (res) => {
-		const { dispatch } = this.props;
-		dispatch(signUpGoogleUser(res.accessToken));
 	};
 
 	render() {
@@ -38,8 +24,6 @@ class SignUpPage extends Component {
 							title="Sign Up"
 							facebookBtnLabel="Facebook Sign Up"
 							googleBtnLabel="Google Sign Up"
-							responseFacebook={this.responseFacebook}
-							responseGoogle={this.responseGoogle}
 						/>
 					</div>
 				</div>

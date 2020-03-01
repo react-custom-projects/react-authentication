@@ -72,7 +72,7 @@ export const loginUser = () => async (dispatch, getState) => {
 
 		dispatch(setUserCookie(loginResponse.data.token));
 		dispatch(setIsLoggedInTrue());
-		toast.success('Logged in successfully');
+		toast.success('Signed in successfully using email and password');
 
 		//get previous location if it exist and push
 		//to that url, otherwise go to search page
@@ -100,9 +100,9 @@ export const signUpGoogleUser = (access_token) => async (dispatch) => {
 		dispatch(setUserCookie(signUpResponse.data.token));
 		dispatch(setIsLoggedInTrue());
 		history.push(getDashboardUrl());
-		toast.success('Signed up successfully using Google');
+		toast.success('Signed in successfully using Google');
 	} catch (err) {
-		console.log(err.response);
+		toast.error('Something went wrong');
 	}
 };
 
@@ -113,8 +113,8 @@ export const signUpFacebookUser = (access_token) => async (dispatch) => {
 		dispatch(setUserCookie(signUpResponse.data.token));
 		dispatch(setIsLoggedInTrue());
 		history.push(getDashboardUrl());
-		toast.success('Signed up successfully using Facebook');
+		toast.success('Signed in successfully using Facebook');
 	} catch (err) {
-		console.log(err.response);
+		toast.error('Something went wrong');
 	}
 };
