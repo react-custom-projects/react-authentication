@@ -1,3 +1,7 @@
+//cache adapter
+import { setupCache } from 'axios-cache-adapter';
+// axios throttler
+import { throttleAdapterEnhancer } from 'axios-extensions';
 import axios from 'axios';
 //redux store
 import { store } from '../../index';
@@ -10,8 +14,16 @@ import { getSignInPageUrl } from '../constants/AppUrls';
 //managers
 import CookiesManager from '../managers/CookiesManager';
 
+//create cache adapter for 5 min
+const cache = setupCache({
+	maxAge: 5 * 60 * 1000,
+	exclude: { query: false },
+});
+
 const apiService = axios.create({
 	baseURL: BASE_URL,
+	headers: { 'Cache-Control': 'no-cache' },
+	adapter: throttleAdapterEnhancer(cache.adapter),
 });
 
 const requestInterceptor = (config) => {
