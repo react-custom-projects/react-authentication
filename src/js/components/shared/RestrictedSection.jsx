@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//this component will return children if at least one of the required permissions is in userPermissionsList
 const RestrictedSection = ({ requiredPermissions, children }) => {
 	//should be replaced with actual user permissions
 	const userPermissionsList = ['EDIT_NOTE', 'CREATE_NOTE'];
