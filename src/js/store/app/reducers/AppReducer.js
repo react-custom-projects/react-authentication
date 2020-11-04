@@ -2,11 +2,11 @@
 import { SET_IS_LOGGED_IN_FALSE, SET_IS_LOGGED_IN_TRUE, TEST_ACTION } from '../../actionTypes';
 //utilities
 import { updateObject } from '../../utility';
-//constants
-import { getCookie, setCookie } from '../../../constants/helper';
+//managers
+import CookiesManager from '../../../managers/CookiesManager';
 
 const initialState = {
-	isLoggedIn: !!getCookie('ACCESS_TOKEN'),
+	isLoggedIn: !!CookiesManager.getCookie('ACCESS_TOKEN'),
 	testString: 'Initial test',
 };
 
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
 			return updateObject(state, { isLoggedIn: true });
 		}
 		case SET_IS_LOGGED_IN_FALSE: {
-			setCookie('ACCESS_TOKEN', '', -10);
+			CookiesManager.setCookie('ACCESS_TOKEN', '', -10);
 			return updateObject(state, { isLoggedIn: false });
 		}
 		case TEST_ACTION:

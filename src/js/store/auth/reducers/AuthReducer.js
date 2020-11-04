@@ -2,7 +2,6 @@
 import { updateObject } from '../../utility';
 //constants
 import { validateRequired, validateEmail } from '../../../constants/CustomValidators';
-import { setCookie } from '../../../constants/helper';
 //action types
 import {
 	RESET_AUTH_FORM,
@@ -10,6 +9,8 @@ import {
 	SET_AUTH_FORM_EMAIL_PROPERTIES,
 	SET_USER_COOKIE,
 } from '../../actionTypes';
+//managers
+import CookiesManager from '../../../managers/CookiesManager';
 
 const initialState = {
 	email: {
@@ -63,7 +64,7 @@ const reducer = (state = initialState, action) => {
 			return initialState;
 		}
 		case SET_USER_COOKIE: {
-			setCookie('ACCESS_TOKEN', action.value, 1);
+			CookiesManager.setCookie('ACCESS_TOKEN', action.value, 1);
 		}
 	}
 	return state;

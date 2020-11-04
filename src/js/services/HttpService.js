@@ -5,15 +5,17 @@ import { store } from '../../index';
 import { setIsLoggedInFalse } from '../store/app/actions/AppActions';
 //constants
 import { BASE_URL } from '../constants/ApiUrls';
-import { getCookie, history } from '../constants/helper';
+import { history } from '../constants/helper';
 import { getSignInPageUrl } from '../constants/AppUrls';
+//managers
+import CookiesManager from '../managers/CookiesManager';
 
 const apiService = axios.create({
 	baseURL: BASE_URL,
 });
 
 const requestInterceptor = (config) => {
-	config.headers['Authorization'] = `Bearer ${getCookie('ACCESS_TOKEN')}`;
+	config.headers['Authorization'] = `Bearer ${CookiesManager.getCookie('ACCESS_TOKEN')}`;
 	return config;
 };
 
